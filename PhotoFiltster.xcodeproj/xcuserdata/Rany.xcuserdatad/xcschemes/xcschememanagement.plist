@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>PhotoExtension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>PhotoFiltster.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>29E59F691D90FF1C001A7540</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29E59F821D90FF24001A7540</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29E59F8D1D90FF25001A7540</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29E59FA31D911908001A7540</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
