@@ -18,12 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PlT-7r-2yg">
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Ygy-OB-SDG" appends="YES" id="jz8-fz-CzA"/>
-                                </connections>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hna-zh-5Lb">
                                 <subviews>
                                     <visualEffectView opaque="NO" alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPF-Fq-I2W">
@@ -100,20 +94,15 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="PlT-7r-2yg" firstAttribute="top" secondItem="zMn-AG-sqS" secondAttribute="top" id="ILG-zd-mec"/>
-                            <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="PlT-7r-2yg" secondAttribute="bottom" id="lEB-wO-34g"/>
-                            <constraint firstAttribute="trailing" secondItem="PlT-7r-2yg" secondAttribute="trailing" id="p8F-4Q-D89"/>
                             <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="hna-zh-5Lb" secondAttribute="bottom" id="pgG-fb-KDU"/>
                             <constraint firstAttribute="trailing" secondItem="hna-zh-5Lb" secondAttribute="trailing" id="sYC-Ld-rtd"/>
                             <constraint firstItem="hna-zh-5Lb" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="u1e-MU-3Yk"/>
-                            <constraint firstItem="PlT-7r-2yg" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="xIZ-az-PcD"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
                     <connections>
                         <outlet property="collectionView" destination="hAs-sO-xf5" id="eKh-Qv-1Q2"/>
-                        <outlet property="imageView" destination="PlT-7r-2yg" id="eri-p3-XXN"/>
                         <outlet property="toolView" destination="hna-zh-5Lb" id="xo8-hI-7go"/>
                     </connections>
                 </viewController>
@@ -124,7 +113,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="137.59999999999999" y="138.53073463268368"/>
+            <point key="canvasLocation" x="150" y="-140"/>
         </scene>
     </scenes>
 </document>

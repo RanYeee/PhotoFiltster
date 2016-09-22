@@ -23,10 +23,14 @@ static NSString *formatVersion    = @"1.0";
     UIImage *_selectImage;
     
     CGPoint _iconPoint;
+    
+    UIImage *_inputImage;
+    
+    CGFloat _proportion;
 }
 @property (strong) PHContentEditingInput *input;
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic)  UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UIView *toolView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
@@ -46,11 +50,11 @@ static NSString *formatVersion    = @"1.0";
     [super viewDidLayoutSubviews];
     
     
-    CGRect imageRect = self.imageView.frame;
-    
-    imageRect.origin.y -= self.toolView.frame.size.height/2.5;
-    
-    self.imageView.frame = imageRect;
+//    CGRect imageRect = self.imageView.frame;
+//    
+//    imageRect.origin.y -= self.toolView.frame.size.height/2.5;
+//    
+//    self.imageView.frame = imageRect;
 }
 
 #pragma mark - PHContentEditingController
@@ -66,7 +70,29 @@ static NSString *formatVersion    = @"1.0";
     
     self.input = contentEditingInput;
     
+    CGFloat imageWidth = placeholderImage.size.width;
+    
+    CGFloat imageHeight = placeholderImage.size.height;
+    
+    _proportion = imageWidth/imageHeight;
+    
+    self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width/_proportion)];
+    
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    self.imageView.userInteractionEnabled = YES;
+    
     self.imageView.image = placeholderImage;
+    
+    self.imageView.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2);
+    
+    [self.view insertSubview:self.imageView belowSubview:self.toolView];
+    
+    _inputImage = placeholderImage;
+    
+    
+    
+//    self.imageView.image = placeholderImage;
     
 }
 
@@ -122,11 +148,11 @@ static NSString *formatVersion    = @"1.0";
         [UIView animateWithDuration:0.3 animations:^{
            
         
-            CGRect imageRect = self.imageView.frame;
-            
-            imageRect.origin.y -= self.toolView.frame.size.height/2.5;
-            
-            self.imageView.frame = imageRect;
+//            CGRect imageRect = self.imageView.frame;
+//            
+//            imageRect.origin.y -= self.toolView.frame.size.height/2.5;
+//            
+//            self.imageView.frame = imageRect;
             
             
             CGRect toolRect = self.toolView.frame;
@@ -142,12 +168,12 @@ static NSString *formatVersion    = @"1.0";
         [UIView animateWithDuration:0.3 animations:^{
             
             
-            CGRect imageRect = self.imageView.frame;
-            
-            imageRect.origin.y = 0;
-            
-            self.imageView.frame = imageRect;
-            
+//            CGRect imageRect = self.imageView.frame;
+//            
+//            imageRect.origin.y = 0;
+//            
+//            self.imageView.frame = imageRect;
+//            
             
             CGRect toolRect = self.toolView.frame;
             
@@ -197,7 +223,7 @@ static NSString *formatVersion    = @"1.0";
  
     _selectImage = [UIImage imageNamed:[NSString stringWithFormat:@"icon_%d.png",indexPath.row+1]];
     
-    __block PanGestureImageView *addImageView = [[PanGestureImageView alloc]initWithFrame:CGRectMake(10, self.imageView.center.y, 60, 60)];
+    __block PanGestureImageView *addImageView = [[PanGestureImageView alloc]initWithFrame:CGRectMake(10, 10, 60, 60)];
     
     addImageView.image = _selectImage;
     
@@ -207,11 +233,11 @@ static NSString *formatVersion    = @"1.0";
        
         CGPoint tmpPoint = addImageView.frame.origin;
         
-        CGFloat imageViewH = self.imageView.frame.size.height;
+        _iconPoint = CGPointMake(_inputImage.size.width * (tmpPoint.x/weakSelf.imageView.frame.size.width),   (_inputImage.size.height * ( (weakSelf.imageView.frame.size.height - tmpPoint.y)/weakSelf.imageView.frame.size.height)));
         
-        _iconPoint = CGPointMake(self.imageView.image.size.width * (tmpPoint.x/weakSelf.imageView.frame.size.width), self.imageView.image.size.height * ( tmpPoint.y/weakSelf.imageView.frame.size.height));
+        //
+
         
-        NSLog(@">>>>>>>%@",NSStringFromCGPoint(addImageView.frame.origin));
     }];
     
     [self.imageView addSubview:addImageView];
@@ -229,6 +255,7 @@ static NSString *formatVersion    = @"1.0";
     CGFloat selectImageW = 60.0f;
     
     CGFloat orginImageW = self.imageView.frame.size.width;
+
     
     CGFloat persen = selectImageW/orginImageW;
     
@@ -241,7 +268,7 @@ static NSString *formatVersion    = @"1.0";
     //create a graphic context with CGBitmapContextCreate
     CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 44 * w, colorSpace, kCGImageAlphaPremultipliedFirst);
     CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);
-    CGContextDrawImage(context, CGRectMake(_iconPoint.x , _iconPoint.y, w*persen, w*persen), [logo CGImage]);
+    CGContextDrawImage(context, CGRectMake(_iconPoint.x , _iconPoint.y*_imageView.frame.size.height/_inputImage.size.height, w*persen, w*persen), [logo CGImage]);
     CGImageRef imageMasked = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
     CGColorSpaceRelease(colorSpace);
