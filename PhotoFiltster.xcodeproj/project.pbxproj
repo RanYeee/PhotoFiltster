@@ -407,7 +407,6 @@
 		29E59FAD1D911908001A7540 /* PhotoEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E59FAC1D911908001A7540 /* PhotoEditingViewController.m */; };
 		29E59FB01D911908001A7540 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29E59FAE1D911908001A7540 /* MainInterface.storyboard */; };
 		29E59FB41D911909001A7540 /* PhotoExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 29E59FA41D911908001A7540 /* PhotoExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		29E59FBB1D911E5D001A7540 /* FiltsterFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E59FBA1D911E5D001A7540 /* FiltsterFilter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -866,8 +865,6 @@
 		29E59FAC1D911908001A7540 /* PhotoEditingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditingViewController.m; sourceTree = "<group>"; };
 		29E59FAF1D911908001A7540 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		29E59FB11D911909001A7540 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		29E59FB91D911E5D001A7540 /* FiltsterFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltsterFilter.h; sourceTree = "<group>"; };
-		29E59FBA1D911E5D001A7540 /* FiltsterFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltsterFilter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1412,8 +1409,6 @@
 				29E59FAC1D911908001A7540 /* PhotoEditingViewController.m */,
 				29E59FAE1D911908001A7540 /* MainInterface.storyboard */,
 				29E59FB11D911909001A7540 /* Info.plist */,
-				29E59FB91D911E5D001A7540 /* FiltsterFilter.h */,
-				29E59FBA1D911E5D001A7540 /* FiltsterFilter.m */,
 				2900C45F1D922DDD006A28A7 /* CustomCell.h */,
 				2900C4601D922DDD006A28A7 /* CustomCell.m */,
 				2900C48B1D9274BA006A28A7 /* PanGestureImageView.h */,
@@ -1872,7 +1867,6 @@
 				2900C36D1D9130C2006A28A7 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				2900C3391D9130C2006A28A7 /* GPUImageExclusionBlendFilter.m in Sources */,
 				2900C3BD1D9130C2006A28A7 /* GPUImagePinchDistortionFilter.m in Sources */,
-				29E59FBB1D911E5D001A7540 /* FiltsterFilter.m in Sources */,
 				2900C4191D9130C2006A28A7 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				2900C3851D9130C2006A28A7 /* GPUImageLinearBurnBlendFilter.m in Sources */,
 				2900C3411D9130C2006A28A7 /* GPUImageFilter.m in Sources */,

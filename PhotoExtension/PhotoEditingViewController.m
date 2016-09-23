@@ -11,6 +11,7 @@
 #import <PhotosUI/PhotosUI.h>
 #import "CustomCell.h"
 #import "PanGestureImageView.h"
+
 static NSString *formatIdentifier = @"com.shinobicontrols.filtster";
 
 static NSString *formatVersion    = @"1.0";
@@ -33,6 +34,7 @@ static NSString *formatVersion    = @"1.0";
 @property (strong, nonatomic)  UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UIView *toolView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
 
 @end
 
@@ -48,13 +50,7 @@ static NSString *formatVersion    = @"1.0";
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    
-    
-//    CGRect imageRect = self.imageView.frame;
-//    
-//    imageRect.origin.y -= self.toolView.frame.size.height/2.5;
-//    
-//    self.imageView.frame = imageRect;
+
 }
 
 #pragma mark - PHContentEditingController
@@ -84,15 +80,14 @@ static NSString *formatVersion    = @"1.0";
     
     self.imageView.image = placeholderImage;
     
+    [self.imageView addGestureRecognizer:self.tapGesture];
+    
     self.imageView.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2);
     
     [self.view insertSubview:self.imageView belowSubview:self.toolView];
     
     _inputImage = placeholderImage;
     
-    
-    
-//    self.imageView.image = placeholderImage;
     
 }
 
@@ -105,7 +100,7 @@ static NSString *formatVersion    = @"1.0";
         
         PHContentEditingOutput *output = [[PHContentEditingOutput alloc] initWithContentEditingInput:self.input];
         
-        NSData *imageData = UIImageJPEGRepresentation([self addImageLogo:self.imageView.image text:_selectImage],1);
+        NSData *imageData = UIImageJPEGRepresentation([self addImageLogo:self.imageView.image text:_selectImage],1.0);
         
         PHAdjustmentData *adjustmentData = [[PHAdjustmentData alloc]initWithFormatIdentifier:formatIdentifier formatVersion:formatVersion data:imageData];
         
@@ -148,13 +143,6 @@ static NSString *formatVersion    = @"1.0";
         [UIView animateWithDuration:0.3 animations:^{
            
         
-//            CGRect imageRect = self.imageView.frame;
-//            
-//            imageRect.origin.y -= self.toolView.frame.size.height/2.5;
-//            
-//            self.imageView.frame = imageRect;
-            
-            
             CGRect toolRect = self.toolView.frame;
             
             toolRect.origin.y -= toolRect.size.height;
@@ -167,13 +155,6 @@ static NSString *formatVersion    = @"1.0";
         
         [UIView animateWithDuration:0.3 animations:^{
             
-            
-//            CGRect imageRect = self.imageView.frame;
-//            
-//            imageRect.origin.y = 0;
-//            
-//            self.imageView.frame = imageRect;
-//            
             
             CGRect toolRect = self.toolView.frame;
             
@@ -235,8 +216,6 @@ static NSString *formatVersion    = @"1.0";
         
         _iconPoint = CGPointMake(_inputImage.size.width * (tmpPoint.x/weakSelf.imageView.frame.size.width),   (_inputImage.size.height * ( (weakSelf.imageView.frame.size.height - tmpPoint.y)/weakSelf.imageView.frame.size.height)));
         
-        //
-
         
     }];
     
@@ -250,6 +229,7 @@ static NSString *formatVersion    = @"1.0";
     }];
 }
 
+#pragma mark - 绘制贴图到图片中
 -(UIImage *)addImageLogo:(UIImage *)img text:(UIImage *)logo
 {
     CGFloat selectImageW = 60.0f;
@@ -261,14 +241,14 @@ static NSString *formatVersion    = @"1.0";
     
     //get image width and height
     int w = img.size.width;
+    
     int h = img.size.height;
-    int logoWidth = logo.size.width;
-    int logoHeight = logo.size.height;
+
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     //create a graphic context with CGBitmapContextCreate
     CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 44 * w, colorSpace, kCGImageAlphaPremultipliedFirst);
     CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);
-    CGContextDrawImage(context, CGRectMake(_iconPoint.x , _iconPoint.y*_imageView.frame.size.height/_inputImage.size.height, w*persen, w*persen), [logo CGImage]);
+    CGContextDrawImage(context, CGRectMake(_iconPoint.x , _iconPoint.y-w*persen, w*persen, w*persen), [logo CGImage]);
     CGImageRef imageMasked = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
     CGColorSpaceRelease(colorSpace);
